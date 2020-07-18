@@ -5,6 +5,7 @@
 [![Scala.js](https://www.scala-js.org/assets/badges/scalajs-1.1.0.svg)](https://www.scala-js.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 ![version](https://img.shields.io/badge/version-0.1.0-success.svg)
+[![Codecov](https://img.shields.io/codecov/c/github/dedipresta/scala-crypto)](https://codecov.io/gh/dedipresta/scala-crypto)
 [![made with love](https://img.shields.io/badge/Made_with-❤-red.svg)](https://www.dedipresta.com)
 
 

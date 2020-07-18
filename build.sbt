@@ -65,3 +65,4 @@ lazy val sha256 = (crossProject(JSPlatform, JVMPlatform).crossType(CrossType.Ful
     addCompilerPlugin(scalafixSemanticdb),
     libraryDependencies ++= scalaTestScalaCheck.value :: scalaCheck.value :: scalaTest.value :: Nil
   )
+  .jsSettings(coverageEnabled := false)
