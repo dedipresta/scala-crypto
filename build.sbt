@@ -55,18 +55,23 @@ lazy val scalaCheck          = Def.setting("org.scalacheck"    %%% "scalacheck" 
 lazy val commonLibraryDependencies = Def.setting(scalaTestScalaCheck.value :: scalaCheck.value :: scalaTest.value :: Nil)
 
 lazy val commonLibrarySettings = Seq(
-  publishArtifact         := true,
-  publishArtifact in Test := false,
-  coverageMinimum         := 95,
-  coverageFailOnMinimum   := true,
-  libraryDependencies     ++= commonLibraryDependencies.value,
+  coverageMinimum       := 95,
+  coverageFailOnMinimum := true,
+  libraryDependencies   ++= commonLibraryDependencies.value,
   addCompilerPlugin(scalafixSemanticdb)
 )
 
-lazy val `scala-crypto`  = (crossProject(JSPlatform, JVMPlatform).crossType(CrossType.Full) in file("."))
+lazy val root = project
+  .in(file("."))
+  .aggregate(`scala-crypto`.js, `scala-crypto`.jvm)
   .settings(
-    name            := "scala-crypto",
-    description     := "Algorithm for scala and scala.js",
+    skip in publish := true
+  )
+
+lazy val `scala-crypto` = (crossProject(JSPlatform, JVMPlatform).crossType(CrossType.Full) in file("."))
+  .settings(
+    name        := "scala-crypto",
+    description := "Algorithm for scala and scala.js",
     commonLibrarySettings,
     addCompilerPlugin(scalafixSemanticdb)
   )
