@@ -15,7 +15,7 @@ class Sha256Spec extends AnyFlatSpec with Matchers with ScalaCheckDrivenProperty
     digest.digest(bytes)
   }
 
-  "Sha256" should s"build a hash from an array of bytes of size Int.MaxValue - 2" in {
+  ignore should s"build a hash from an array of bytes of size Int.MaxValue - 2" in {
     val bytes = Array.ofDim[Byte](Int.MaxValue - 2)
     Sha256.hash(bytes) should equal(defaultSha256(bytes))
   }
