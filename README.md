@@ -4,7 +4,7 @@
 [![Scala 2.13](https://img.shields.io/badge/Scala-2.13-blue)](https://www.scala-lang.org/)
 [![Scala.js](https://www.scala-js.org/assets/badges/scalajs-1.1.0.svg)](https://www.scala-js.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
-![version](https://img.shields.io/badge/version-0.1.0-success.svg)
+![version](https://img.shields.io/badge/semver-1.0.0-success.svg)
 [![Codecov](https://img.shields.io/codecov/c/github/dedipresta/scala-crypto)](https://codecov.io/gh/dedipresta/scala-crypto)
 [![made with love](https://img.shields.io/badge/Made_with-❤-red.svg)](https://www.dedipresta.com)
 
@@ -17,7 +17,7 @@ It targets Scala and Scala.js.
 All Scala SHA-256 hash libraries rely on Java libraries, especially `java.security.MessageDigest`
 and thus cannot be used in the context of a `scala.js` application or library.
 Having a dependency free library allows to publish for other platforms than JVM and in addition to `scala.js`
-this library will be published to `scala-native` once support for Scala support for 2.12 and 2.13
+this library will be published to `scala-native` once support for Scala 2.12 and 2.13
 will be available.
 
 
@@ -26,6 +26,7 @@ will be available.
 | Supported algorithms |  Information                  |
 |----------------------|-------------------------------|
 | *SHA-256*            | Inspired by java implementation  [meyfa/java-sha256](https://github.com/meyfa/java-sha256)|
+| *SHA-512*            | 
 
 ## How to use
 
@@ -33,11 +34,11 @@ Add to your sbt project:
 
 *Scala:*
 ```Scala
-libraryDependencies += "com.dedipresta" %% "scala-crypto-sha256" % "0.1.0"
+libraryDependencies += "com.dedipresta" %% "scala-crypto" % "1.0.0"
 ```
 *Scala.js:*
 ```Scala
-libraryDependencies += "com.dedipresta" %%% "scala-crypto-sha256" % "0.1.0"
+libraryDependencies += "com.dedipresta" %%% "scala-crypto" % "1.0.0"
 ```
 
 Then you may hash your `String` or `Array[Byte]`:

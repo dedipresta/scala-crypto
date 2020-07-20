@@ -52,17 +52,22 @@ lazy val scalaTest           = Def.setting("org.scalatest"     %%% "scalatest"  
 lazy val scalaTestScalaCheck = Def.setting("org.scalatestplus" %%% "scalacheck-1-14" % versions.scalaTestScalaCheck % Test)
 lazy val scalaCheck          = Def.setting("org.scalacheck"    %%% "scalacheck"      % versions.scalaCheck          % Test)
 
-lazy val `scala-crypto` = (project in file("."))
-  .settings(skip in publish := true)
-  .aggregate(sha256.js, sha256.jvm)
+lazy val commonLibraryDependencies = Def.setting(scalaTestScalaCheck.value :: scalaCheck.value :: scalaTest.value :: Nil)
 
-lazy val sha256 = (crossProject(JSPlatform, JVMPlatform).crossType(CrossType.Full) in file("sha256"))
+lazy val commonLibrarySettings = Seq(
+  publishArtifact         := true,
+  publishArtifact in Test := false,
+  coverageMinimum         := 95,
+  coverageFailOnMinimum   := true,
+  libraryDependencies     ++= commonLibraryDependencies.value,
+  addCompilerPlugin(scalafixSemanticdb)
+)
+
+lazy val `scala-crypto`  = (crossProject(JSPlatform, JVMPlatform).crossType(CrossType.Full) in file("."))
   .settings(
-    name                  := "scala-crypto-sha256",
-    description           := "Sha256 Algorithm for scala and scala.js",
-    coverageMinimum       := 80,
-    coverageFailOnMinimum := true,
-    addCompilerPlugin(scalafixSemanticdb),
-    libraryDependencies ++= scalaTestScalaCheck.value :: scalaCheck.value :: scalaTest.value :: Nil
+    name            := "scala-crypto",
+    description     := "Algorithm for scala and scala.js",
+    commonLibrarySettings,
+    addCompilerPlugin(scalafixSemanticdb)
   )
   .jsSettings(coverageEnabled := false)
